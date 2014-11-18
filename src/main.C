@@ -1,11 +1,11 @@
-#include "EelEulerApp.h"
+#include "Eel2dApp.h"
 #include "MooseInit.h"
 #include "Moose.h"
 #include "MooseApp.h"
 #include "AppFactory.h"
 
 // Create a performance log
-PerfLog Moose::perf_log("EelEuler");
+PerfLog Moose::perf_log("Eel (Euler)");
 
 // Begin the main program.
 int main(int argc, char *argv[])
@@ -14,10 +14,10 @@ int main(int argc, char *argv[])
   MooseInit init(argc, argv);
 
   // Register this application's MooseApp and any it depends on
-  EelEulerApp::registerApps();
+  Eel2dApp::registerApps();
 
   // This creates dynamic memory that we're responsible for deleting
-  MooseApp * app = AppFactory::createApp("EelEulerApp", argc, argv);
+  MooseApp * app = AppFactory::createApp("Eel2dApp", argc, argv);
 
   app->legacyUoInitializationDefault() = false;
   app->legacyUoAuxComputationDefault() = false;

@@ -1,0 +1,42 @@
+#include "Eel2dApp.h"
+#include "Moose.h"
+#include "AppFactory.h"
+
+template<>
+InputParameters validParams<Eel2dApp>()
+{
+  InputParameters params = validParams<MooseApp>();
+  return params;
+}
+
+Eel2dApp::Eel2dApp(const std::string & name, InputParameters parameters) :
+    MooseApp(name, parameters)
+{
+  srand(processor_id());
+
+  Moose::registerObjects(_factory);
+  Eel2dApp::registerObjects(_factory);
+
+  Moose::associateSyntax(_syntax, _action_factory);
+  Eel2dApp::associateSyntax(_syntax, _action_factory);
+}
+
+Eel2dApp::~Eel2dApp()
+{
+}
+
+void
+Eel2dApp::registerApps()
+{
+  registerApp(Eel2dApp);
+}
+
+void
+Eel2dApp::registerObjects(Factory & factory)
+{
+}
+
+void
+Eel2dApp::associateSyntax(Syntax & syntax, ActionFactory & action_factory)
+{
+}
